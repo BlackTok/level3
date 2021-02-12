@@ -30,7 +30,7 @@ public class FruitBox<T extends Fruit> {
 
     /**
      * Сравнивает вес двух коробок с фруктами
-     * @param box экземпляр класса, расширяющего класс Box
+     * @param box экземпляр класса Box
      * @return true, если вес коробок равен
      */
     public <B extends Fruit> boolean compare(FruitBox<B> box) {
