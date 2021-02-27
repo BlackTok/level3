@@ -1,8 +1,9 @@
 package lesson5;
 
 public class Road extends Stage {
-    public Road(int length) {
+    public Road(int length, int carsCountInStage) {
         this.length = length;
+        this.carsCountInStage = carsCountInStage;
         this.description = "Дорога " + length + " метров";
     }
     @Override
