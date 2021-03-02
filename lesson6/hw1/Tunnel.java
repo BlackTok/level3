@@ -1,15 +1,21 @@
 package lesson6.hw1;
 
+import java.io.IOException;
 import java.util.concurrent.Semaphore;
+import java.util.logging.*;
 
 public class Tunnel extends Stage {
-    private Semaphore tunnel;
+    private final Logger log;
+    private final Semaphore tunnel;
 
-    public Tunnel(int length, int carsCountInStage) {
+    public Tunnel(int length, int carsCountInStage, Logger log) {
         this.length = length;
         this.carsCountInStage = carsCountInStage;
         this.description = "Тоннель " + length + " метров";
         this.tunnel = new Semaphore(carsCountInStage);
+        this.log = log;
+
+        log.log(Level.INFO, String.format("Добавилось: %s", description));
     }
     @Override
     public void go(Car c) {

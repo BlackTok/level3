@@ -1,8 +1,11 @@
 package lesson6.hw1;
 
+import java.io.IOException;
 import java.util.concurrent.Semaphore;
+import java.util.logging.*;
 
 public class Car implements Runnable {
+    private final Logger log;
     private static Car winner;
     private final Semaphore startLine, finishLine;
 
@@ -12,9 +15,9 @@ public class Car implements Runnable {
         CARS_COUNT = 0;
     }
 
-    private Race race;
-    private int speed;
-    private String name;
+    private final Race race;
+    private final int speed;
+    private final String name;
 
     public String getName() {
         return name;
@@ -24,15 +27,17 @@ public class Car implements Runnable {
         return speed;
     }
 
-    public Car(Race race, int speed, Semaphore startLine, Semaphore finishLine) {
+    public Car(Race race, int speed, Semaphore startLine, Semaphore finishLine, Logger log) {
         this.race = race;
         this.speed = speed;
         CARS_COUNT++;
         this.name = "Участник #" + CARS_COUNT;
         this.startLine = startLine;
         this.finishLine = finishLine;
-    }
+        this.log = log;
 
+        log.log(Level.INFO, String.format("Добавилась машина %s, со скоростью %s", name, speed));
+    }
     @Override
     public void run() {
         try {
@@ -62,7 +67,7 @@ public class Car implements Runnable {
 
             finishLine.acquire();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.log(Level.SEVERE, e.getLocalizedMessage());
         }
     }
 }
