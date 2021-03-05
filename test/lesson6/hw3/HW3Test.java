@@ -9,6 +9,8 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
 
+import static org.hamcrest.CoreMatchers.is;
+
 @RunWith(value = Parameterized.class)
 public class HW3Test {
     private final int[] array;
@@ -27,12 +29,13 @@ public class HW3Test {
                 {0,1,2,3,4,5,6,7,8,9}, //true
                 {4,5,4,5,4,5}, //true
                 {3,9,8,4,6,2,1,4,5,6,7,0,2,1}, //true
-                {0,2,3,5,6,7,8,9} //false
+                {0,2,3,5,6,7,8,9}, //false
+                {1,4} //true
         });
     }
 
     @Test
     public void getArrayTest() {
-        Assert.assertTrue(HW3.checkArray(array));
+        Assert.assertThat(HW3.checkArray(array), is(true));
     }
 }
