@@ -55,8 +55,8 @@ public class Test {
             throw new RuntimeException("Method with @AfterSuite more than one");
 
         invokeMethods(beforeSuiteMethods);
-        invokeMethods(afterSuiteMethods);
         testingMethods(testMethods);
+        invokeMethods(afterSuiteMethods);
     }
 
     private static void testingMethods(Map<Enum<Priority>, List<Method>> testMethods) throws InvocationTargetException, IllegalAccessException {
